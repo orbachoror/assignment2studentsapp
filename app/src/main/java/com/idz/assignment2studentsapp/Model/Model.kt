@@ -11,10 +11,15 @@ class Model private constructor() {
             val student = Student(
                 name = "Test Student $i",
                 id = i.toString(),
-                avatarUrl = "",
+                phone = "052-12345 $i+1 $i",
+                address = "Israel",
                 isChecked = false
             )
             students.add(student)
         }
+    }
+
+    fun addStudent(student: Student) {
+        students.add(student)
     }
 }
