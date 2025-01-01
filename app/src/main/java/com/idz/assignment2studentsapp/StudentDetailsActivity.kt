@@ -25,16 +25,18 @@ class StudentDetailsActivity : AppCompatActivity() {
         }
         val studentPosition:Int = intent.getIntExtra("studentPosition",0)
         val student = Model.shared.students[studentPosition]
+
         val nameTextView = findViewById<TextView>(R.id.student_details_name_text_view)
         val idTextView = findViewById<TextView>(R.id.student_details_id_text_view)
         val phoneTextView = findViewById<TextView>(R.id.student_details_phone_text_view)
         val addressTextView = findViewById<TextView>(R.id.student_details_address_text_view)
         val checkBox = findViewById<CheckBox>(R.id.student_details_check_check_box)
         val editButton = findViewById<Button>(R.id.student_details_edit_button)
-        nameTextView.text = student.name
-        idTextView.text = student.id
-        phoneTextView.text = student.phone
-        addressTextView.text = student.address
+
+        nameTextView.text = "Name: " + student.name
+        idTextView.text = "ID: " + student.id
+        phoneTextView.text ="Phone: " + student.phone
+        addressTextView.text ="Address: " + student.address
         checkBox.isChecked = student.isChecked
         if(checkBox.isChecked){
             checkBox.text = "Checked"
