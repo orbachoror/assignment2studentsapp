@@ -2,6 +2,7 @@ package com.idz.assignment2studentsapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -32,6 +33,14 @@ class NewStudentActivity : AppCompatActivity() {
         val addressTextField: EditText = findViewById(R.id.add_student_address_text_field)
         val checkBox = findViewById<CheckBox>(R.id.add_student_check_box)
         val savedTextField: TextView = findViewById(R.id.add_student_success_saved_text_view)
+        val isCheckedTextView: TextView = findViewById(R.id.textView5)
+
+        checkBox.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                isCheckedTextView.visibility = View.VISIBLE
+            } else {
+                isCheckedTextView.visibility = View.INVISIBLE
+            }
 
         saveButton.setOnClickListener {
 //            savedTextField.text = "${nameTextField.text} ${idTextField.text}  ${phoneTextField.text} ${addressTextField.text}  ${checkBox.isChecked} is saved...!!!"
@@ -41,17 +50,20 @@ class NewStudentActivity : AppCompatActivity() {
             val address = addressTextField.text.toString()
             val isChecked = checkBox.isChecked
 
-            val newStudent = Student(name, id, phone, address, isChecked)
 
-            Model.shared.addStudent(newStudent)
 
-            savedTextField.text = "$name is saved...!!!"
-        }
+                val newStudent = Student(name, id, phone, address, isChecked)
 
-        cancelButton.setOnClickListener {
-            //finish()
-            val intent = Intent(this,StudentListActivity::class.java)
-            startActivity(intent)
+                Model.shared.addStudent(newStudent)
+
+                savedTextField.text = "$name is saved...!!!"
+            }
+
+            cancelButton.setOnClickListener {
+                //finish()
+                val intent = Intent(this, StudentListActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
