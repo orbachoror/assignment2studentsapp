@@ -1,7 +1,11 @@
 package com.idz.assignment2studentsapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,8 +24,26 @@ class StudentDetailsActivity : AppCompatActivity() {
             insets
         }
         val studentPosition:Int = intent.getIntExtra("studentPosition",0)
-        Log.d("TAG", "onCreate: ${studentPosition.let { Model.shared.students[it] }}")
-
+        val student = Model.shared.students[studentPosition]
+        val nameTextView = findViewById<TextView>(R.id.student_details_name_text_view)
+        val idTextView = findViewById<TextView>(R.id.student_details_id_text_view)
+        val phoneTextView = findViewById<TextView>(R.id.student_details_phone_text_view)
+        val addressTextView = findViewById<TextView>(R.id.student_details_address_text_view)
+        val checkBox = findViewById<CheckBox>(R.id.student_details_check_check_box)
+        val editButton = findViewById<Button>(R.id.student_details_edit_button)
+        nameTextView.text = student.name
+        idTextView.text = student.id
+        phoneTextView.text = student.phone
+        addressTextView.text = student.address
+        checkBox.isChecked = student.isChecked
+        if(checkBox.isChecked){
+            checkBox.text = "Checked"
+        }
+        editButton.setOnClickListener{
+            val intent = Intent(this, NewStudentActivity::class.java)
+            intent.putExtra("studentPosition",studentPosition)
+            startActivity(intent)
+        }
     }
 
 }
