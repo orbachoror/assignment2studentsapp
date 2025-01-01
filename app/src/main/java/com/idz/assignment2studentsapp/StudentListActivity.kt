@@ -3,6 +3,7 @@ package com.idz.assignment2studentsapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,6 +33,13 @@ class StudentListActivity : AppCompatActivity() {
             insets
         }
 
+        val moveToNewStudentButton: Button = findViewById(R.id.students_list_button)
+
+        moveToNewStudentButton.setOnClickListener{
+            val intent = Intent(this,NewStudentActivity::class.java)
+            startActivity(intent)
+        }
+
         students = Model.shared.students
 
         val recyclerView: RecyclerView = findViewById(R.id.students_recycler_view)
@@ -54,6 +62,7 @@ class StudentListActivity : AppCompatActivity() {
         }
         recyclerView.adapter = adapter
     }
+
 
 
 
