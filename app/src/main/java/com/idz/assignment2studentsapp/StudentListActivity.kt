@@ -1,5 +1,6 @@
 package com.idz.assignment2studentsapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -42,11 +43,13 @@ class StudentListActivity : AppCompatActivity() {
         val adapter = StudentsRecyclerAdapter(students)
         adapter.listener = object : OnItemClickListener {
             override fun onItemClick(position: Int) {
-                Log.d("TAG", "On click Activity listener on position $position")
+                val intent = Intent(this@StudentListActivity, StudentDetailsActivity::class.java)
+                intent.putExtra("studentPosition", position)
+                startActivity(intent)
             }
 
             override fun onItemClick(student: Student?) {
-                Log.d("TAG", "On student clicked name: ${student?.name}")
+
             }
         }
         recyclerView.adapter = adapter
