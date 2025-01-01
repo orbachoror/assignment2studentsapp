@@ -1,5 +1,6 @@
 package com.idz.assignment2studentsapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
@@ -48,10 +49,9 @@ class NewStudentActivity : AppCompatActivity() {
         }
 
         cancelButton.setOnClickListener {
-            finish()
+            //finish()
+            val intent = Intent(this,StudentListActivity::class.java)
+            startActivity(intent)
         }
-
-
-
     }
 }
